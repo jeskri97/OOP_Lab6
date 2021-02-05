@@ -10,6 +10,7 @@ private:
 	Node* next;
 	Node* prev;
 public:
+	Node(int data);
 	int getData();
 	void setData(int data);
 	Node* getNext();

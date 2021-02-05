@@ -20,4 +20,5 @@ public:
 	void displayForward();
 	void displayBackward();
 	int size();
+	void debugPrint();
 };

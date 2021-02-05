@@ -6,6 +6,11 @@
 // // class definitions
 // 
 
+Node::Node(int data) {
+	this->data = data;
+	this->next = nullptr;
+	this->prev = nullptr;
+}
 int Node::getData() {
 	return this->data;
 }
