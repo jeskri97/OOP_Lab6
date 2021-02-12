@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include "SDL.h"
+#include "breakout.h"
 
 int main(int argc, char* argv[]) {
 	bool programOn = true;
@@ -9,17 +10,24 @@ int main(int argc, char* argv[]) {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	SDL_Window* window = SDL_CreateWindow("game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_SHOWN);
 	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
-	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-	SDL_RenderClear(renderer);
+	//SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+	//SDL_RenderClear(renderer);
+
+	Breakout game;
 
 	SDL_Event event;
 	while (programOn) {
 		while (SDL_PollEvent(&event) != 0) {
+			SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+			SDL_RenderClear(renderer);
+
+			game.render(renderer);
+			SDL_RenderPresent(renderer);
+
 			//printf("SDL_PollEvent(&event) != 0\n");
 			if (event.type == SDL_QUIT) {
 				programOn = false;
 			}
-			SDL_RenderPresent(renderer);
 			if (event.type == SDL_KEYDOWN) {
 				switch (event.key.keysym.sym)
 				{

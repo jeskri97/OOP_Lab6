@@ -45,6 +45,12 @@ Shape::Shape() {
 void Shape::setPos(Point2D pos) {
 	this->pos = pos;
 }
+void Shape::setColor(int red, int green, int blue, int alpha) {
+	this->color[0] = red;
+	this->color[1] = green;
+	this->color[2] = blue;
+	this->color[3] = alpha;
+}
 Point2D Shape::getPos() {
 	return this->pos;
 }
@@ -80,6 +86,12 @@ void Rectangle::render(SDL_Renderer* renderer) {
 	SDL_RenderDrawLine(renderer, pos.getx() - halfWidth, pos.gety() + halfHeight, pos.getx() + halfWidth, pos.gety() + halfHeight);
 	SDL_RenderDrawLine(renderer, pos.getx() + halfWidth, pos.gety() + halfHeight, pos.getx() + halfWidth, pos.gety() - halfHeight);
 }
+void Rectangle::setVal(int width, int height) {
+	this->width = width;
+	this->height = height;
+	this->halfWidth = width / 2;
+	this->halfHeight = height / 2;
+}
 
 Triangle::Triangle(Point2D pos, int color[4], float base, float height)
 	: Shape(pos, color) {
@@ -107,6 +119,12 @@ void Triangle::render(SDL_Renderer* renderer) {
 	SDL_RenderDrawLine(renderer, pos.getx(), pos.gety() - halfHeight, pos.getx() - halfBase, pos.gety() + halfHeight);
 	SDL_RenderDrawLine(renderer, pos.getx() - halfBase, pos.gety() + halfHeight, pos.getx() + halfBase, pos.gety() + halfHeight);
 	SDL_RenderDrawLine(renderer, pos.getx() + halfBase, pos.gety() + halfHeight, pos.getx(), pos.gety() - halfHeight);
+}
+void Triangle::setVal(int base, int height) {
+	this->base = base;
+	this->height = height;
+	this->halfBase = base / 2;
+	this->halfHeight = height / 2;
 }
 
 Circle::Circle(Point2D pos, int color[4], float radius)
@@ -141,4 +159,7 @@ void Circle::render(SDL_Renderer* renderer) {
 		//printf("\nx1: %g\ty1: %g\nx2: %g\ty2: %g\n", x1, y1, x2, y2);
 		SDL_RenderDrawLine(renderer, x1, y1, x2, y2);
 	}
+}
+void Circle::setRad(int radius) {
+	this->radius = radius;
 }

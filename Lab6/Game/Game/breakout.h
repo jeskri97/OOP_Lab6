@@ -9,5 +9,6 @@ private:
 	Rectangle plank;
 	Circle ball;
 public:
-
+	Breakout();
+	void render(SDL_Renderer* renderer);
 };
