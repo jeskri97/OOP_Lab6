@@ -1,2 +1,13 @@
-﻿  main.cpp
-  Game.vcxproj -> C:\Users\bruh1\Documents\OOP\Lab6\Game\x64\Debug\Game.exe
+﻿  breakout.cpp
+C:\Users\BRUH\Documents\Lab6\Game\Game\breakout.cpp(29,49): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\BRUH\Documents\Lab6\Game\Game\breakout.cpp(29,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\BRUH\Documents\Lab6\Game\Game\breakout.cpp(30,76): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\BRUH\Documents\Lab6\Game\Game\breakout.cpp(30,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\BRUH\Documents\Lab6\Game\Game\breakout.cpp(36,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\BRUH\Documents\Lab6\Game\Game\breakout.cpp(52,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\BRUH\Documents\Lab6\Game\Game\breakout.cpp(57,65): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\BRUH\Documents\Lab6\Game\Game\breakout.cpp(57,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\BRUH\Documents\Lab6\Game\Game\breakout.cpp(62,45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\BRUH\Documents\Lab6\Game\Game\breakout.cpp(66,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\BRUH\Documents\Lab6\Game\Game\breakout.cpp(78,51): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Game.vcxproj -> C:\Users\BRUH\Documents\Lab6\Game\x64\Debug\Game.exe

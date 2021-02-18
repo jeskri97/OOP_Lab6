@@ -1,7 +1,4 @@
 
-#include <iostream>
-#include <math.h>
-
 #include "shapes.h"
 
 Shape::Shape(Point2D pos, int color[4]) {
@@ -92,6 +89,12 @@ void Rectangle::setVal(int width, int height) {
 	this->halfWidth = width / 2;
 	this->halfHeight = height / 2;
 }
+float Rectangle::getWidth() {
+	return this->width;
+}
+float Rectangle::getHeight() {
+	return this->height;
+}
 
 Triangle::Triangle(Point2D pos, int color[4], float base, float height)
 	: Shape(pos, color) {
@@ -162,4 +165,7 @@ void Circle::render(SDL_Renderer* renderer) {
 }
 void Circle::setRad(int radius) {
 	this->radius = radius;
+}
+float Circle::getRad() {
+	return this->radius;
 }

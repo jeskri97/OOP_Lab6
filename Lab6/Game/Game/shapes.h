@@ -2,6 +2,7 @@
 
 #include "SDL.h"
 #include <iostream>
+#include <math.h>
 #include "point2D.h"
 
 #ifndef PI
@@ -35,6 +36,8 @@ public:
 	Rectangle();
 	void render(SDL_Renderer* renderer);
 	void setVal(int width, int height);
+	float getWidth();
+	float getHeight();
 };
 
 class Triangle : public Shape {
@@ -55,4 +58,5 @@ public:
 	Circle();
 	void render(SDL_Renderer* renderer);
 	void setRad(int radius);
+	float getRad();
 };

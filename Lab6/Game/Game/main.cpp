@@ -4,26 +4,77 @@
 #include "SDL.h"
 #include "breakout.h"
 
+// Define game Resolution.
+#define GAME_X_RESOLUTION 1280
+#define GAME_Y_RESOLUTION 720
+
 int main(int argc, char* argv[]) {
 	bool programOn = true;
 
 	SDL_Init(SDL_INIT_EVERYTHING);
-	SDL_Window* window = SDL_CreateWindow("game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_SHOWN);
-	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
-	//SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-	//SDL_RenderClear(renderer);
+	SDL_Window* window = SDL_CreateWindow("game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, GAME_X_RESOLUTION, GAME_Y_RESOLUTION, SDL_WINDOW_SHOWN);
+	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
 
-	Breakout game;
+	// Amount of bricks per row.
+	int bricksPerRow = 8;
+	// Amount of rows.
+	int numberOfRows = 5;
+	// Width and height of bricks.
+	int width = GAME_X_RESOLUTION / bricksPerRow, height = (GAME_Y_RESOLUTION / 2) / numberOfRows;
+	// Position of the first brick
+	Point2D brickPos(width / 2, height / 2);
+	// Setup the wall.
+	Rectangle brick;
+	std::vector<std::vector<Rectangle>> wall;
+	for (int i = 0; i < numberOfRows + 1; i++) {
+		std::vector<Rectangle> row;
+		for (int j = 0; j < bricksPerRow; j++) {
+			// Set brick color.
+			brick.setColor(0, 0, 0, 255);
+			// Set brick position.
+			brick.setPos(brickPos);
+			// Set brick Width and height.
+			brick.setVal(width, height);
+			// Add brick to list.
+			row.push_back(brick);
+			// Update brick position for next brick.
+			brickPos = brickPos + Point2D(width, 0);
+		}
+		// Add row to wall.
+		wall.push_back(row);
+		// Update brick position for next brick.
+		brickPos = Point2D(width / 2, (height / 2) + height * i);
+	}
+
+	//// Setup the wall.
+	//Rectangle brick;
+	//std::vector<Rectangle> wall;
+	//// Run for amount of rows
+	//for (int row = 1; row < numberOfRows + 1; row++) {
+	//	// Run for amount of bricks per row.
+	//	for (int i = 0; i < bricksPerRow; i++) {
+	//		// Set brick color.
+	//		brick.setColor(0, 0, 0, 255);
+	//		// Set brick position.
+	//		brick.setPos(brickPos);
+	//		// Set brick Width and height.
+	//		brick.setVal(width, height);
+	//		// Add brick to list.
+	//		wall.push_back(brick);
+	//		// Update brick position for next brick.
+	//		brickPos = brickPos + Point2D(width, 0);
+	//	}
+	//	// Update brick position for next brick.
+	//	brickPos = Point2D(width / 2, (height / 2) + height * row);
+	//}
+
+	Breakout game(wall, GAME_X_RESOLUTION, GAME_Y_RESOLUTION);
 
 	SDL_Event event;
+	// Game render loop.
 	while (programOn) {
+		// Handle key inputs.
 		while (SDL_PollEvent(&event) != 0) {
-			SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-			SDL_RenderClear(renderer);
-
-			game.render(renderer);
-			SDL_RenderPresent(renderer);
-
 			//printf("SDL_PollEvent(&event) != 0\n");
 			if (event.type == SDL_QUIT) {
 				programOn = false;
@@ -31,46 +82,31 @@ int main(int argc, char* argv[]) {
 			if (event.type == SDL_KEYDOWN) {
 				switch (event.key.keysym.sym)
 				{
+				case SDLK_LEFT:
+					game.movePlank(-(GAME_X_RESOLUTION / 80));
+					break;
+				case SDLK_RIGHT:
+					game.movePlank(GAME_X_RESOLUTION / 80);
+					break;
 				case SDLK_ESCAPE: {
 					programOn = false;
 					break;
 				}
-				//case SDL_MOUSEMOTION: {
-				//	int mouseX = event.motion.x;
-				//	int mouseY = event.motion.y;
-				//
-				//	std::stringstream ss;
-				//	ss << "X: " << mouseX << " Y: " << mouseY;
-				//
-				//	SDL_SetWindowTitle(window, ss.str().c_str());
-				//	break;
-				//}
 				default:
 					printf("\n[INVALID INPUT]\n");
 					break;
 				}
 			}
 		}
+		game.moveBall();
+		// Background color.
+		SDL_SetRenderDrawColor(renderer, 70, 70, 70, 255);
+		SDL_RenderClear(renderer);
+		// Render game objects.
+		game.render(renderer);
+		// Render present.
+		SDL_RenderPresent(renderer);
 	}
 
 	return 0;
 }
-
-//// testing that SLD linked correctly.
-//int main(int argc, char* argv[]) {
-//	SDL_SetMainReady();
-//
-//	SDL_Init(SDL_INIT_EVERYTHING);
-//	SDL_Window* window = SDL_CreateWindow("title", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 600, 400, SDL_WINDOW_SHOWN);
-//	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
-//
-//	SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
-//
-//	SDL_RenderClear(renderer);
-//
-//	SDL_RenderPresent(renderer);
-//
-//	SDL_Delay(3000);
-//
-//	return 0;
-//}
