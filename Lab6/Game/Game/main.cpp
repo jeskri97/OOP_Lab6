@@ -46,28 +46,6 @@ int main(int argc, char* argv[]) {
 		brickPos = Point2D(width / 2, (height / 2) + height * i);
 	}
 
-	//// Setup the wall.
-	//Rectangle brick;
-	//std::vector<Rectangle> wall;
-	//// Run for amount of rows
-	//for (int row = 1; row < numberOfRows + 1; row++) {
-	//	// Run for amount of bricks per row.
-	//	for (int i = 0; i < bricksPerRow; i++) {
-	//		// Set brick color.
-	//		brick.setColor(0, 0, 0, 255);
-	//		// Set brick position.
-	//		brick.setPos(brickPos);
-	//		// Set brick Width and height.
-	//		brick.setVal(width, height);
-	//		// Add brick to list.
-	//		wall.push_back(brick);
-	//		// Update brick position for next brick.
-	//		brickPos = brickPos + Point2D(width, 0);
-	//	}
-	//	// Update brick position for next brick.
-	//	brickPos = Point2D(width / 2, (height / 2) + height * row);
-	//}
-
 	Breakout game(wall, GAME_X_RESOLUTION, GAME_Y_RESOLUTION);
 
 	SDL_Event event;
@@ -83,10 +61,10 @@ int main(int argc, char* argv[]) {
 				switch (event.key.keysym.sym)
 				{
 				case SDLK_LEFT:
-					game.movePlank(-(GAME_X_RESOLUTION / 80));
+					game.movePlank(-(GAME_X_RESOLUTION / 64));
 					break;
 				case SDLK_RIGHT:
-					game.movePlank(GAME_X_RESOLUTION / 80);
+					game.movePlank(GAME_X_RESOLUTION / 64);
 					break;
 				case SDLK_ESCAPE: {
 					programOn = false;
@@ -99,6 +77,9 @@ int main(int argc, char* argv[]) {
 			}
 		}
 		game.moveBall();
+		if (game.getGameOver()) {
+			programOn = false;
+		}
 		// Background color.
 		SDL_SetRenderDrawColor(renderer, 70, 70, 70, 255);
 		SDL_RenderClear(renderer);
