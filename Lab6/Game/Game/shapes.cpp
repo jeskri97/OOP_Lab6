@@ -72,11 +72,11 @@ Rectangle::Rectangle()
 void Rectangle::render(SDL_Renderer* renderer) {
 	Point2D pos = this->getPos();
 	//std::string sPos = pos.toString();
-	int* color = this->getColor();
+	//int* color = this->getColor();
 	//printf("\nRectangle\nPos:\t%s\nWidth / Height:\t%g / %g\n", sPos.c_str(), this->width, this->height);
 
 	// Set draw color
-	SDL_SetRenderDrawColor(renderer, color[0], color[1], color[2], color[3]);
+	SDL_SetRenderDrawColor(renderer, this->getColor()[0], this->getColor()[1], this->getColor()[2], this->getColor()[3]);
 	// Draw shape
 	SDL_RenderDrawLine(renderer, pos.getx() + halfWidth, pos.gety() - halfHeight, pos.getx() - halfWidth, pos.gety() - halfHeight);
 	SDL_RenderDrawLine(renderer, pos.getx() - halfWidth, pos.gety() - halfHeight, pos.getx() - halfWidth, pos.gety() + halfHeight);
@@ -141,11 +141,11 @@ Circle::Circle()
 void Circle::render(SDL_Renderer* renderer) {
 	Point2D pos = this->getPos();
 	//std::string sPos = pos.toString();
-	int* color = this->getColor();
+	//int* color = this->getColor();
 	//printf("\nCircle\nPos:\t%s\nRadius:\t%g\n", sPos.c_str(), this->radius);
 
 	// Set draw color
-	SDL_SetRenderDrawColor(renderer, color[0], color[1], color[2], color[3]);
+	SDL_SetRenderDrawColor(renderer, this->getColor()[0], this->getColor()[1], this->getColor()[2], this->getColor()[3]);
 	// Amount of points.
 	int points = 20;
 	// The step size.

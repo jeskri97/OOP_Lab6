@@ -1,0 +1,8 @@
+Lab 6 : Task 2 : Breakout
+
+--< How to play >--
+Use the right and left arrow keys to move the platform.
+Press the Esc key to exit the game.
+
+Break all the bricks to win.
+If the ball touches the bottom of the screen you lose and the game exits.
